@@ -1,0 +1,27 @@
+executor: KubernetesExecutor
+
+config:
+  webserver:
+    expose_config: 'True'
+
+webserver:
+  service:
+    type: NodePort
+triggerer:
+  securityContext:
+    runAsUser: 0
+    fsGroup: 0
+    runAsGroup: 0
+scheduler:
+  securityContext:
+    runAsUser: 0
+    fsGroup: 0
+    runAsGroup: 0
+
+dags:
+  persistence:
+    enabled: true
+
+extraEnvFrom: |
+  - secretRef:
+      name: "airflow-environment-variables"
