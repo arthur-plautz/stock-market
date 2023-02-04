@@ -1,6 +1,7 @@
 *.terraform*
 *.states*
 *.env
+*.dockerhost
 
 *__pycache__*
 *.pyc

@@ -23,4 +23,8 @@ resource "helm_release" "airflow" {
       value = set.value.value
     }
   }
+
+  depends_on = [
+    docker_image.airflow
+  ]
 }

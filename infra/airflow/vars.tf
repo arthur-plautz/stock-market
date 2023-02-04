@@ -3,8 +3,20 @@ locals {
   database_migration_job = true
   dags_path = "/src/dags"
 
+  image_name = "airflow-stock-market"
+  image_version = "0.1"
+  image_tag = "${local.image_name}:${local.image_version}"
+
   overrides_file = [file("./config/values_override.yml")]
   overrides = [
+    {
+      name = "images.airflow.repository",
+      value = local.image_name
+    },
+    {
+      name = "images.airflow.tag",
+      value = local.image_version
+    },
     {
       name  = "dags.persistence.existingClaim"
       value = kubernetes_persistent_volume_claim.dags.metadata.0.name
