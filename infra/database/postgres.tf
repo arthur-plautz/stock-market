@@ -24,4 +24,6 @@ resource "helm_release" "database" {
     name = "primary.persistence.existingClaim"
     value = kubernetes_persistent_volume_claim.database.metadata.0.name
   }
+
+  values = local.overrides_file
 }

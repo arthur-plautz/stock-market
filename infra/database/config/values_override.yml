@@ -1,0 +1,8 @@
+primary:
+  extraVolumeMounts:
+    - name: datalake
+      mountPath: /src/data
+  extraVolumes:
+    - name: datalake
+      hostPath:
+        path: /src/data
