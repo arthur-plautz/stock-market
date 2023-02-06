@@ -1,7 +1,4 @@
-source .env
-export KUBECONFIG=$HOME/.kube/stock_market_config
+source config.sh
 
 cd ..
-minikube start --mount --mount-string="$(pwd)/airflow/dags:/src/dags"
-eval $(minikube docker-env)
-echo $DOCKER_HOST > ./infra/.dockerhost
+minikube start --mount --mount-string="$(pwd):/src"

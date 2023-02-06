@@ -1,7 +1,8 @@
 locals {
   airflow_namespace      = "airflow"
   database_migration_job = true
-  dags_path = "/src/dags"
+  dags_path = "/src/airflow/dags"
+  datalake_path = "/src/data"
 
   image_name = "airflow-stock-market"
   image_version = "0.1"
@@ -46,4 +47,11 @@ locals {
       value = !local.database_migration_job
     }
   ]
+}
+
+variable "docker_host" {
+  type = string
+}
+variable "kube_config" {
+  type = string
 }

@@ -13,20 +13,16 @@ terraform {
   required_version = "~> 1.2.0"
 }
 
-data "local_file" "docker_host" {
-  filename = "../.dockerhost"
-}
-
 provider "docker" {
-  host = data.local_file.docker_host.content
+  host = var.docker_host
 }
 
 provider "kubernetes" {
-  config_path    = "~/.kube/stock_market_config"
+  config_path    = var.kube_config
 }
 
 provider "helm" {
   kubernetes {
-    config_path    = "~/.kube/stock_market_config"
+    config_path    = var.kube_config
   }
 }

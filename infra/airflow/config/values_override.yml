@@ -1,4 +1,4 @@
-executor: KubernetesExecutor
+executor: LocalExecutor
 
 config:
   webserver:
@@ -17,6 +17,13 @@ scheduler:
     runAsUser: 0
     fsGroup: 0
     runAsGroup: 0
+  extraVolumeMounts:
+    - name: airflow-datalake
+      mountPath: /src/data
+  extraVolumes:
+    - name: airflow-datalake
+      hostPath:
+        path: /src/data
 
 dags:
   persistence:
@@ -24,4 +31,4 @@ dags:
 
 extraEnvFrom: |
   - secretRef:
-      name: "airflow-environment-variables"
+      name: airflow-environment-variables
