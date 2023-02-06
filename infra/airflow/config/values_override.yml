@@ -29,7 +29,7 @@ dags:
   persistence:
     enabled: true
 
-postgres:
+postgresql:
   enabled: false
 
 extraEnvFrom: |

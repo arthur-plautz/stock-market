@@ -13,6 +13,14 @@ locals {
   overrides_file = [file("./config/values_override.yml")]
   overrides = [
     {
+      name = "fernetKey",
+      value = base64encode(var.fernet_key)
+    },
+    {
+      name = "webserverSecretKey"
+      value = base64encode(var.websecret_key)
+    },
+    {
       name = "images.airflow.repository",
       value = local.image_name
     },
@@ -55,10 +63,22 @@ locals {
   ]
 }
 
-variable database_password {
+variable "database_password" {
   type = string
   sensitive = true
   default = "airflow"
+}
+
+variable "fernet_key" {
+  type = string
+  sensitive = true
+  default = "airflowfernetkeyairflowfernetkey"
+}
+
+variable websecret_key {
+  type = string
+  sensitive = true
+  default = "airflowwebsecretkeyairflowwebsec"
 }
 
 variable "docker_host" {
