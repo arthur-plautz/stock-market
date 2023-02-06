@@ -29,6 +29,9 @@ dags:
   persistence:
     enabled: true
 
+postgres:
+  enabled: false
+
 extraEnvFrom: |
   - secretRef:
       name: airflow-environment-variables

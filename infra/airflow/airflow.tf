@@ -1,9 +1,3 @@
-resource "kubernetes_namespace" "airflow_namespace" {
-  metadata {
-    name = local.airflow_namespace
-  }
-}
-
 resource "helm_release" "airflow" {
   name       = "airflow"
   namespace  = local.airflow_namespace

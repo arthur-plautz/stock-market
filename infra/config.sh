@@ -1,4 +1,3 @@
-source .env
 eval $(minikube docker-env)
 
 export KUBECONFIG=$HOME/.kube/stock_market_config

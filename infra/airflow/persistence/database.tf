@@ -1,20 +1,19 @@
-resource "kubernetes_namespace" "database_namespace" {
+resource "kubernetes_namespace" "airflow_namespace" {
   metadata {
-    name = local.database_namespace
+    name = local.airflow_namespace
   }
 }
 
-
 resource "helm_release" "database" {
-  name       = "database"
-  namespace = local.database_namespace
+  name       = "airflow-database"
+  namespace = local.airflow_namespace
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "postgresql"
   version    = "12.1.14"
 
   set {
     name  = "global.postgresql.auth.existingSecret"
-    value = "postgres-password"
+    value = "airflow-database-password"
   }
   set {
     name = "global.postgresql.auth.secretKeys.adminPasswordKey"
@@ -22,6 +21,10 @@ resource "helm_release" "database" {
   }
   set {
     name = "primary.persistence.existingClaim"
-    value = kubernetes_persistent_volume_claim.database.metadata.0.name
+    value = kubernetes_persistent_volume_claim.airflow_database.metadata.0.name
+  }
+  set {
+    name = "auth.database"
+    value = "airflow"
   }
 }
