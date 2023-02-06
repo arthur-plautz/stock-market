@@ -24,6 +24,13 @@ scheduler:
     - name: airflow-datalake
       hostPath:
         path: /src/data
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+    requests:
+      cpu: 400m
+      memory: 1Gi
 
 dags:
   persistence:

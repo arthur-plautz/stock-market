@@ -37,18 +37,6 @@ locals {
       value = kubernetes_secret.airflow_database_connection.metadata.0.name
     },
     {
-      name  = "scheduler.waitForMigrations.enabled"
-      value = local.database_migration_job
-    },
-    {
-      name  = "triggerer.waitForMigrations.enabled"
-      value = local.database_migration_job
-    },
-    {
-      name  = "webserver.waitForMigrations.enabled"
-      value = local.database_migration_job
-    },
-    {
       name  = "migrateDatabaseJob.useHelmHooks"
       value = !local.database_migration_job
     },
