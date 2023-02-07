@@ -8,3 +8,6 @@
 *venv*
 
 data/*/*
+
+*.vscode*
+.dburi

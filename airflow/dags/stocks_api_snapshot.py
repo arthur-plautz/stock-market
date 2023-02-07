@@ -11,7 +11,7 @@ def clean_ds(ds):
 def datalake_path(ds):
     return f"{DATALAKE}/raw/snapshot/b{ds}.csv"
 
-@dag(schedule='@monthly', concurrency=5, start_date=datetime(2021, 3, 4), end_date=datetime(2023, 2, 4), catchup=True)
+@dag(schedule='@weekly', concurrency=5, start_date=datetime(2021, 3, 4), end_date=datetime(2023, 2, 4), catchup=True)
 def stocks_api_snapshot():
     @task(retries=2)
     def extract(**kwargs):
